@@ -10,7 +10,9 @@ export class HeroService {
 
   constructor() { }
 
-  getHeroes(): Hero[] {
-    return HEROES;
+  //Llamará HttpClient.get<Hero[]> que devuelve un Observable<Hero>
+  //que emite un solo valor, la matriz de héroes simulados
+  getHeroes(): Observable<Hero[]> {
+    return of(HEROES);
   }
 }

@@ -10,7 +10,7 @@ import { HeroService} from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
 
-  heroes: HERO[];
+  heroes: Hero[];
   selectedHero: Hero;
 
   constructor(private heroService: HeroService) { }
@@ -28,9 +28,13 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
-  getHeroes(): Observable<Hero> {
+  getHeroes(): void {
     //this.heroes = this.heroService.getHeroes();
-    return of(HEROES);
+    //Un observable emite la serie de héroes.
+    //El método subscribe() pasa la matriz emitida a la devolución de llamada que establece la propiedad
+    //del componente heroes. Es un enfoque asincróno que funciona cuando el servicio HeroService solicite héroes.
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+    //return of(this.heroes);
   }
 }
 

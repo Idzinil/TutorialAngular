@@ -30,4 +30,7 @@ export class InMemoryDataService implements InMemoryDbService {
   genId(heroes: Hero[]): number {
     return heroes.length > 0 ? Math.max(...heroes.map(hero => hero.id)) + 1 : 11;
   }
+  // El in-memory-data.service.ts. asumirá la función de mock-heroes.ts.
+  // Cuando el servidor esté listo, desconectará la API web en memoria y las solicitudes de la
+  // aplicación pasarán al servidor.
 }

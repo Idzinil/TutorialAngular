@@ -31,13 +31,18 @@ export class HeroDetailComponent implements OnInit {
   ** Los param de ruta son siempre cadenas, + convierte la cadena en un número, que es lo que id debería ser
   ** El naveg se actualiza y la app se bloquea con un error del compilador
   */
-  getHero(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+ getHero(): void {
+  const id = +this.route.snapshot.paramMap.get('id');
+  this.heroService.getHero(id)
+    .subscribe(hero => this.hero = hero);
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.heroService.updateHero(this.hero)
+      .subscribe(() => this.goBack());
   }
 }
